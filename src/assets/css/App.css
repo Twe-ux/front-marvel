@@ -1,1 +1,67 @@
 @import "tailwindcss";
+
+:root {
+  --var-border-color: rgb(227, 0, 26);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+main {
+  flex: 1 1 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* padding: 4px; */
+  background-color: var(--var-border-color);
+  border: solid 0.5rem var(--var-border-color);
+  border-bottom: 0;
+  border-radius: 16px 16px 0px 0px;
+  /* box-shadow: inset 0px 1px 8px 4px rgba(0, 0, 0, 0.2); */
+  overflow: hidden;
+}
+
+.bordeR {
+  border: 1px solid var(--var-border-color);
+}
+
+.minW {
+  min-width: 366px;
+}
+
+input {
+  border-color: var(--var-border-color);
+}
+
+.cards {
+  border: 1px solid;
+  border-color: var(--var-border-color);
+}
+
+.cards {
+  background-color: var(--var-border-color);
+  box-shadow: inset 0px 1px 8px 4px rgba(0, 0, 0, 0.2);
+}
