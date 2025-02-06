@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
+import SearchBar from "./SearchBar";
 
-const Navbar = ({ setOpen }) => {
+const Navbar = ({ setOpen, find, setFind, setSkip }) => {
   return (
     <div className="min-w-60 h-full flex flex-col justify-between p-2">
       <div>
-        <div className="">
+        <div className="mb-5">
           <Link
             onClick={() => {
               setOpen(false);
+              setSkip(100);
             }}
             to="/characters"
           >
@@ -19,23 +21,39 @@ const Navbar = ({ setOpen }) => {
             />
           </Link>
         </div>
+        <div className="flex flex-col gap-4">
+          <div className="mb-5">
+            <SearchBar find={find} setFind={setFind} />
+          </div>
 
-        <Link
-          onClick={() => {
-            setOpen(false);
-          }}
-          to="/characters"
-        >
-          <Nav title={"Personnage"} />
-        </Link>
-        <Link
-          onClick={() => {
-            setOpen(false);
-          }}
-          to="/comics"
-        >
-          <Nav title={"Comics"} />
-        </Link>
+          <Link
+            onClick={() => {
+              setOpen(false);
+              setSkip(100);
+            }}
+            to="/characters"
+          >
+            <Nav title={"Personnage"} />
+          </Link>
+
+          <Link
+            onClick={() => {
+              setOpen(false);
+              setSkip(100);
+            }}
+            to="/comics"
+          >
+            <Nav title={"Comics"} />
+          </Link>
+          <Link
+            onClick={() => {
+              setOpen(false);
+            }}
+            to="/favoris"
+          >
+            <Nav title={"Favoris"} />
+          </Link>
+        </div>
       </div>
 
       {/* Block à coder 

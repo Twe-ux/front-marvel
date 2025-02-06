@@ -1,4 +1,8 @@
 import { pUn } from "../lib/img-variant";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faStar } from "@fortawesome/free-solid-svg-icons";
+// import { faStar as faStar2 } from "@fortawesome/free-regular-svg-icons";
+import { useState } from "react";
 
 const Cards = ({ results, open }) => {
   let title = "";
@@ -7,11 +11,44 @@ const Cards = ({ results, open }) => {
   } else {
     title = results.title;
   }
+  // const [inFavorite, setInFavorite] = useState(true);
 
   return (
-    <div className="cards w-50 overflow-hidden rounded-md ">
+    <div
+      className={
+        open
+          ? "cards w-40 overflow-hidden rounded-md  "
+          : "cards w-56 overflow-hidden rounded-md  "
+      }
+    >
+      {/* <div
+        className={
+          open
+            ? "absolute flex justify-end w-40 p-2 z-50"
+            : "absolute flex justify-end w-56 p-2 z-50"
+        }
+      >
+        {inFavorite ? (
+          <FontAwesomeIcon
+            onClick={() => {
+              setInFavorite(false);
+            }}
+            className=" text-amber-300 "
+            icon={faStar2}
+          />
+        ) : (
+          <FontAwesomeIcon
+            onClick={() => {
+              setInFavorite(true);
+            }}
+            className=" text-amber-300 "
+            icon={faStar}
+          />
+        )}
+      </div> */}
+
       <img
-        className={"rounded-b-lg " + open ? "w-50" : "w-44"}
+        className="rounded-b-lg"
         src={`${results.thumbnail.path}${pUn}${results.thumbnail.extension}`}
         alt={title}
       />

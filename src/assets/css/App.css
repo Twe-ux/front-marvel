@@ -39,7 +39,7 @@ main {
   background-color: var(--var-border-color);
   border: solid 0.5rem var(--var-border-color);
   border-bottom: 0;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 16px 16px 16px 16px;
   /* box-shadow: inset 0px 1px 8px 4px rgba(0, 0, 0, 0.2); */
   overflow: hidden;
 }
@@ -64,4 +64,22 @@ input {
 .cards {
   background-color: var(--var-border-color);
   box-shadow: inset 0px 1px 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.css-lq5hqx-MuiSlider-mark {
+  color: white !important;
+}
+.css-1xcmt9q-MuiSlider-thumb {
+  color: white !important;
+}
+/* .css-16kozi8-MuiSlider-mark {
+  color: rgb(0, 4, 255) !important;
+} */
+.css-13vpke-MuiSlider-root {
+  color: red !important;
+}
+
+input:focus-visible {
+  outline: 1px solid transparent;
+  border: 1px solid transparent;
 }
