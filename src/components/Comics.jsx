@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import instance from "../lib/axios.serve";
 import { pUn, pSm, pMe } from "../lib/img-variant";
 
-const Comics = ({ comics, id }) => {
+const Comics = ({ comics, id, target }) => {
   const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  console.log("data", data.path);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await instance.get(`comic/${comics}`);
-        // console.log("res", response.data);
+        const response = await instance.get(`${target}/${comics}`);
         setData(response.data.thumbnail);
         setIsLoading(false);
       } catch (error) {
@@ -25,10 +23,10 @@ const Comics = ({ comics, id }) => {
   return isLoading ? (
     <p>null</p>
   ) : (
-    <Link to={`/comics/${comics}`}>
+    <Link to={`/${target}/${comics}`}>
       <img
-        className=" rounded-md"
-        src={`${data.path}${pSm}jpg`}
+        className=" rounded-md h-50"
+        src={`${data.path}${pUn}jpg`}
         alt={data.title}
       />
     </Link>

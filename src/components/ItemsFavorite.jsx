@@ -1,25 +1,12 @@
-import { pUn } from "../lib/img-variant";
-import { Link } from "react-router-dom";
-//Components
 import StarIcon from "./StarIcon";
 
-const Cards = ({
-  results,
-  open,
-  setOpen,
-  oldPath,
-  insideFavoriteCharacters,
-  setInsideFavoriteCharacters,
-  insideFavoriteComics,
-  setInsideFavoriteComics,
-}) => {
+const ItemsFavorite = ({ results, open, setOpen, oldPath }) => {
   let title = "";
   if (results.title === undefined) {
     title = results.name;
   } else {
     title = results.title;
   }
-
   return (
     <div
       className={
@@ -33,20 +20,20 @@ const Cards = ({
           insideFavorite={insideFavoriteComics}
           setInsideFavorite={setInsideFavoriteComics}
           oldPath={oldPath}
-          results={results._id}
+          results={results}
         />
       ) : (
         <StarIcon
           insideFavorite={insideFavoriteCharacters}
           setInsideFavorite={setInsideFavoriteCharacters}
           oldPath={oldPath}
-          results={results._id}
+          results={results}
         />
       )}
 
       <Link
         key={results._id}
-        to={`/${oldPath}/${results._id}`}
+        to={`/${oldPath}/${results}`}
         onClick={() => {
           setOpen(true);
         }}
@@ -64,4 +51,4 @@ const Cards = ({
   );
 };
 
-export default Cards;
+export default ItemsFavorite;

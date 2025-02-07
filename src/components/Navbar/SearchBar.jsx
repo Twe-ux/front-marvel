@@ -28,16 +28,18 @@ const SearchBar = ({ find, setFind }) => {
   };
 
   return (
-    <form>
-      <input
-        className="border-2 h-8 p-2 bg-white w-55 rounded-md"
-        type="text"
-        placeholder="Recherche ..."
-        name="find"
-        value={value}
-        onChange={handleFindChange}
-      />
-    </form>
+    <div className="mb-5">
+      <form>
+        <input
+          className="border-2 h-8 p-2 bg-white w-55 rounded-md"
+          type="text"
+          placeholder="Recherche ..."
+          name="find"
+          value={value}
+          onChange={handleFindChange}
+        />
+      </form>
+    </div>
   );
 };
 

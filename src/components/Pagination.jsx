@@ -3,14 +3,11 @@ import Slider from "@mui/material/Slider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({ skip, setSkip, count }) => {
+const Pagination = ({ skip, setSkip, count }) => {
   if (count === undefined) {
     count = 0;
     return count;
   }
-  console.log("header", count);
-
-  // let maxLimit = Number(count - 100);
 
   return (
     <header>
@@ -22,7 +19,7 @@ const Header = ({ skip, setSkip, count }) => {
             {skip === 100 ? (
               <div className="w-4"></div>
             ) : (
-              <Tooltip title="Previous page">
+              <Tooltip title="Page précédente">
                 <FontAwesomeIcon
                   onClick={() => {
                     setSkip(skip - 100);
@@ -38,6 +35,7 @@ const Header = ({ skip, setSkip, count }) => {
                   onChange={(event, value) => {
                     setSkip(value);
                   }}
+                  valueLabelDisplay="auto"
                   defaultValue={0}
                   shiftStep={100}
                   step={100}
@@ -52,7 +50,7 @@ const Header = ({ skip, setSkip, count }) => {
             {skip >= count - 100 ? (
               <div className="w-4"></div>
             ) : (
-              <Tooltip title="Next page">
+              <Tooltip title="Page suivante">
                 <FontAwesomeIcon
                   onClick={() => {
                     setSkip(skip + 100);
@@ -69,4 +67,4 @@ const Header = ({ skip, setSkip, count }) => {
   );
 };
 
-export default Header;
+export default Pagination;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Loader = ({ visible, setVisible }) => {
@@ -6,14 +5,11 @@ const Loader = ({ visible, setVisible }) => {
 
   // Flag set when the video is shown.
 
-  // const myCallback = () => (navigate = "/characters");
   if (!visible) {
     return null;
   }
 
   return (
-    // <div className="w-full h-full bg-white rounded-lg p-2 mb-2">
-    // <div className="flex h-full">
     <div className="flex h-full">
       <div className="bg-black w-full rounded-md flex justify-center items-center flex-col overflow-hidden">
         <video
@@ -33,7 +29,6 @@ const Loader = ({ visible, setVisible }) => {
         </video>
       </div>
     </div>
-    // </div>
   );
 };
 

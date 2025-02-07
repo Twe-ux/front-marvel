@@ -10,6 +10,10 @@ const Details = ({
   setOpen,
   count,
   setCount,
+  insideFavoriteCharacters,
+  setInsideFavoriteCharacters,
+  insideFavoriteComics,
+  setInsideFavoriteComics,
 }) => {
   return (
     <>
@@ -21,6 +25,10 @@ const Details = ({
         setOpen={setOpen}
         count={count}
         setCount={setCount}
+        insideFavoriteCharacters={insideFavoriteCharacters}
+        setInsideFavoriteCharacters={setInsideFavoriteCharacters}
+        insideFavoriteComics={insideFavoriteComics}
+        setInsideFavoriteComics={setInsideFavoriteComics}
       />
       <ContainerHalf target={target} setOpen={setOpen} />
     </>

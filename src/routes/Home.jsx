@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import instance from "../lib/axios.serve";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStar2 } from "@fortawesome/free-regular-svg-icons";
 
 // Components
 import Cards from "../components/Cards";
@@ -12,15 +8,24 @@ import Cards from "../components/Cards";
 // Store the previous request in cache.
 const cache = new Map();
 
-const Home = ({ find, skip, limit, open, setOpen, count, setCount }) => {
+const Home = ({
+  find,
+  skip,
+  limit,
+  open,
+  setOpen,
+  count,
+  setCount,
+  insideFavoriteCharacters,
+  setInsideFavoriteCharacters,
+  insideFavoriteComics,
+  setInsideFavoriteComics,
+}) => {
   let path = useLocation().pathname.split("/")[1];
   const oldPath = path;
 
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
-  const [inFavorite, setInFavorite] = useState(true);
-
-  // console.log("home", count);
 
   if (find === undefined) {
     path = path;
@@ -62,7 +67,7 @@ const Home = ({ find, skip, limit, open, setOpen, count, setCount }) => {
       }
     };
     fetchData();
-  }, [path, count]);
+  }, [path]);
 
   return isLoading ? (
     <div className=" rounded-md w-full flex"></div>
@@ -70,44 +75,20 @@ const Home = ({ find, skip, limit, open, setOpen, count, setCount }) => {
     <div className=" rounded-md overflow-hidden overflow-y-scroll">
       <div className=" flex flex-wrap gap-3 justify-between ">
         {data.results.map((results, index) => {
+          // console.log(results);
           return (
             <div key={results + index}>
-              <div
-                className={
-                  open
-                    ? "relative flex justify-end w-40  z-50"
-                    : "relative flex justify-end w-56  z-50"
-                }
-              >
-                {inFavorite ? (
-                  <FontAwesomeIcon
-                    onClick={() => {
-                      setInFavorite(false);
-                    }}
-                    className=" text-amber-300 absolute p-2 "
-                    icon={faStar2}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    onClick={() => {
-                      setInFavorite(true);
-                    }}
-                    className=" text-amber-300 absolute p-2"
-                    icon={faStar}
-                  />
-                )}
-              </div>
-
-              <Link
-                className="z-0"
-                key={results._id}
-                to={`/${oldPath}/${results._id}`}
-                onClick={() => {
-                  setOpen(true);
-                }}
-              >
-                <Cards results={results} open={open} />
-              </Link>
+              <Cards
+                index={index}
+                results={results}
+                open={open}
+                setOpen={setOpen}
+                oldPath={oldPath}
+                insideFavoriteCharacters={insideFavoriteCharacters}
+                setInsideFavoriteCharacters={setInsideFavoriteCharacters}
+                insideFavoriteComics={insideFavoriteComics}
+                setInsideFavoriteComics={setInsideFavoriteComics}
+              />
             </div>
           );
         })}

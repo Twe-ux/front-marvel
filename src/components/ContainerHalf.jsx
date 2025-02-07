@@ -77,23 +77,19 @@ const ContainerHalf = ({ target, setOpen }) => {
       <h1 className=" font-bold"> {data.name} </h1>
       <p> {data.description} </p>
 
-      {/* {data.comics[0] ? (
-        <>
-          <h2 className=" font-medium mt-10">Apparait dans : </h2>
-          <div className="flex gap-2 flex-wrap ">
-            {data.comics.map((comics, index) => {
-              return <Comics key={comics + index} comics={comics} id={id} />;
-            })}
-          </div>
-        </>
-      ) : null} */}
-
       {data.comics[0] === undefined ? null : (
         <>
           <h2 className=" font-medium mt-10">Apparait dans : </h2>
           <div className="flex gap-2 flex-wrap ">
             {data.comics.map((comics, index) => {
-              return <Comics key={comics + index} comics={comics} id={id} />;
+              return (
+                <Comics
+                  key={comics + index}
+                  comics={comics}
+                  id={id}
+                  target={"comic"}
+                />
+              );
             })}
           </div>
         </>
