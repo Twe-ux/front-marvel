@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/img/Logo-Marvel.png";
 
 // Components
 import SearchBar from "./SearchBar";
@@ -16,11 +17,7 @@ const Navbar = ({ setOpen, find, setFind, setSkip, setHiddenSlider }) => {
             }}
             to="/characters"
           >
-            <img
-              className="h-20"
-              src="/src/assets/img/Logo-Marvel.png"
-              alt="logo marvel"
-            />
+            <img className="h-20" src={logo} alt="logo marvel" />
           </Link>
         </div>
 

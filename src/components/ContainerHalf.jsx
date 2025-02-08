@@ -52,7 +52,7 @@ const ContainerHalf = ({ target, setOpen }) => {
         alt={data.title}
       />
       <h1 className=" font-bold p-2"> {data.title} </h1>
-      <p className=" whitespace-pre-wrap">{decode(data.description)}</p>
+      <p className=" whitespace-pre-wrap p-2">{decode(data.description)}</p>
     </div>
   ) : (
     <div className="min-w-80 max-w-80 h-full text-black rounded-md pb-2 overflow-y-scroll bg-zinc-300 border-zinc-500 border-2">
