@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import video from "../assets/video/Marvel-Intro.mp4";
 
 const Loader = ({ visible, setVisible }) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Loader = ({ visible, setVisible }) => {
             navigate("/characters");
           }}
         >
-          <source src="/src/assets/video/Marvel-Intro.mp4" type="video/mp4" />
+          <source src={video} type="video/mp4" />
         </video>
       </div>
     </div>
