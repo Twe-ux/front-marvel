@@ -14,7 +14,7 @@ const StarIcon = ({ insideFavorite, setInsideFavorite, results }) => {
         }
         setInsideFavorite(copy);
       }}
-      className=" text-amber-300 absolute p-2"
+      className=" text-yellow-300 text-xl absolute p-2"
       icon={insideFavorite.has(results) ? faStar : faStar2}
     />
   );

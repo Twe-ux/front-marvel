@@ -1,37 +1,27 @@
-import Home from "../routes/Home";
-import ContainerHalf from "./ContainerHalf";
+import FavoritePage from "../../routes/FavoritePage";
+import ContainerHalf from "../ContainerHalf";
 
-const Details = ({
-  target,
-  find,
-  skip,
-  limit,
-  open,
+const FavoritePageHalf = ({
   setOpen,
-  count,
-  setCount,
   insideFavoriteCharacters,
   setInsideFavoriteCharacters,
   insideFavoriteComics,
   setInsideFavoriteComics,
+  target,
+  setTarget,
 }) => {
   return (
     <>
-      <Home
-        find={find}
-        skip={skip}
-        limit={limit}
-        open={open}
-        setOpen={setOpen}
-        count={count}
-        setCount={setCount}
+      <FavoritePage
         insideFavoriteCharacters={insideFavoriteCharacters}
         setInsideFavoriteCharacters={setInsideFavoriteCharacters}
         insideFavoriteComics={insideFavoriteComics}
         setInsideFavoriteComics={setInsideFavoriteComics}
+        setTarget={setTarget}
       />
       <ContainerHalf target={target} setOpen={setOpen} />
     </>
   );
 };
-export default Details;
+
+export default FavoritePageHalf;

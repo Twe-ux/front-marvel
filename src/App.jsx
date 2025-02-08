@@ -6,8 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// import { insideFavorite, setInsideFavorite } from "./lib/characterFavorite";
-
 import { useState, useEffect } from "react";
 
 //Components
@@ -15,19 +13,28 @@ import Pagination from "./components/Pagination";
 import Navbar from "./components/Navbar/Navbar";
 
 //Routes
-import Loader from "./components/Loader";
-import Home from "./routes/Home";
-import Details from "./components/Details";
-import Favorite from "./routes/Favorite";
+import Loader from "./routes/Loader";
+import MainPage from "./routes/MainPage";
+import Container from "./routes/Container";
+import FavoritePage from "./routes/FavoritePage";
+import FavoritePageHalf from "./components/ItemsFavorite/FavoritePageHalf";
 
 function App() {
-  const [find, setFind] = useState("");
+  //Loader
   const [visible, setVisible] = useState(true);
-  const [open, setOpen] = useState(false);
+  //SearchBar
+  const [find, setFind] = useState("");
   const [skip, setSkip] = useState(100);
-  const [limit, setLimit] = useState(100);
-  const [count, setCount] = useState(0);
+  //Container
+  const [open, setOpen] = useState(false);
+  // console.log("app", open);
 
+  //Slider
+  const [count, setCount] = useState(0);
+  const [hiddenSlider, setHiddenSlider] = useState(true);
+  // console.log("count", count);
+
+  //For initiate Favorite set
   const [insideFavoriteCharacters, setInsideFavoriteCharacters] = useState(
     function loadFavoriteFromLocalStorage() {
       const serialized = window.localStorage.getItem("favorite/characters");
@@ -65,131 +72,166 @@ function App() {
   );
 
   return (
-    <>
-      <Router>
-        <Loader visible={visible} setVisible={setVisible} />
-        {visible ? null : (
-          <>
-            <main>
-              <div className="flex w-full h-full pb-2">
-                <Navbar
-                  find={find}
-                  setFind={setFind}
-                  setOpen={setOpen}
-                  setSkip={setSkip}
-                />
-                <div className="w-full h-full bg-white rounded-lg pt-2 pb-2 pr-2 pl-2 overflow-hidden">
-                  <div className="flex h-full gap-2">
-                    <Routes>
-                      <Route
-                        path="/characters"
-                        element={
-                          <Home
-                            find={find}
-                            skip={skip}
-                            limit={limit}
-                            open={open}
-                            setOpen={setOpen}
-                            count={count}
-                            setCount={setCount}
-                            insideFavoriteCharacters={insideFavoriteCharacters}
-                            setInsideFavoriteCharacters={
-                              setInsideFavoriteCharacters
-                            }
-                            insideFavoriteComics={insideFavoriteComics}
-                            setInsideFavoriteComics={setInsideFavoriteComics}
-                          />
-                        }
-                      />
-                      <Route
-                        path="/comics"
-                        element={
-                          <Home
-                            find={find}
-                            skip={skip}
-                            limit={limit}
-                            open={open}
-                            setOpen={setOpen}
-                            count={count}
-                            setCount={setCount}
-                            insideFavoriteCharacters={insideFavoriteCharacters}
-                            setInsideFavoriteCharacters={
-                              setInsideFavoriteCharacters
-                            }
-                            insideFavoriteComics={insideFavoriteComics}
-                            setInsideFavoriteComics={setInsideFavoriteComics}
-                          />
-                        }
-                      />
-                      <Route
-                        path="/characters/:id"
-                        element={
-                          <Details
-                            target="character"
-                            find={find}
-                            skip={skip}
-                            limit={limit}
-                            open={open}
-                            setOpen={setOpen}
-                            count={count}
-                            setCount={setCount}
-                            insideFavoriteCharacters={insideFavoriteCharacters}
-                            setInsideFavoriteCharacters={
-                              setInsideFavoriteCharacters
-                            }
-                            insideFavoriteComics={insideFavoriteComics}
-                            setInsideFavoriteComics={setInsideFavoriteComics}
-                          />
-                        }
-                      />
-                      <Route
-                        path="/comics/:id"
-                        element={
-                          <Details
-                            target="comic"
-                            find={find}
-                            skip={skip}
-                            limit={limit}
-                            open={open}
-                            setOpen={setOpen}
-                            count={count}
-                            setCount={setCount}
-                            insideFavoriteCharacters={insideFavoriteCharacters}
-                            setInsideFavoriteCharacters={
-                              setInsideFavoriteCharacters
-                            }
-                            insideFavoriteComics={insideFavoriteComics}
-                            setInsideFavoriteComics={setInsideFavoriteComics}
-                          />
-                        }
-                      />
+    <Router>
+      <Loader visible={visible} setVisible={setVisible} />
+      {visible ? null : (
+        <>
+          <main>
+            <div className="flex w-full h-full pb-2">
+              <Navbar
+                find={find}
+                setFind={setFind}
+                setOpen={setOpen}
+                setSkip={setSkip}
+                setHiddenSlider={setHiddenSlider}
+              />
 
-                      <Route
-                        path="/favorite"
-                        element={
-                          <Favorite
-                            open={open}
-                            setOpen={setOpen}
-                            insideFavoriteCharacters={insideFavoriteCharacters}
-                            insideFavoriteComics={insideFavoriteComics}
-                          />
-                        }
-                      />
+              <div className=" w-full h-full bg-white rounded-lg p-2 overflow-hidden pb-10">
+                <div className="flex justify-between w-full h-full gap-2">
+                  <Routes>
+                    <Route
+                      path="/characters"
+                      element={
+                        <MainPage
+                          find={find}
+                          skip={skip}
+                          open={open}
+                          setOpen={setOpen}
+                          count={count}
+                          setCount={setCount}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/comics"
+                      element={
+                        <MainPage
+                          find={find}
+                          skip={skip}
+                          open={open}
+                          setOpen={setOpen}
+                          count={count}
+                          setCount={setCount}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/characters/:id"
+                      element={
+                        <Container
+                          find={find}
+                          skip={skip}
+                          open={open}
+                          setOpen={setOpen}
+                          count={count}
+                          setCount={setCount}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                          target={"character"}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/comics/:id"
+                      element={
+                        <Container
+                          find={find}
+                          skip={skip}
+                          open={open}
+                          setOpen={setOpen}
+                          count={count}
+                          setCount={setCount}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                          target={"comic"}
+                        />
+                      }
+                    />
 
-                      <Route
-                        path="/*"
-                        element={<Navigate to="/characters" replace />}
-                      />
-                    </Routes>
-                  </div>
+                    <Route
+                      path="/favorite"
+                      element={
+                        <FavoritePage
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                          setHiddenSlider={setHiddenSlider}
+                        />
+                      }
+                    />
+
+                    <Route
+                      path="/favorite/character/:id"
+                      element={
+                        <FavoritePageHalf
+                          open={open}
+                          setOpen={setOpen}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                          target={"character"}
+                          setHiddenSlider={setHiddenSlider}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/favorite/comic/:id"
+                      element={
+                        <FavoritePageHalf
+                          open={open}
+                          setOpen={setOpen}
+                          insideFavoriteCharacters={insideFavoriteCharacters}
+                          setInsideFavoriteCharacters={
+                            setInsideFavoriteCharacters
+                          }
+                          insideFavoriteComics={insideFavoriteComics}
+                          setInsideFavoriteComics={setInsideFavoriteComics}
+                          target={"comic"}
+                        />
+                      }
+                    />
+
+                    <Route
+                      path="/*"
+                      element={<Navigate to="/characters" replace />}
+                    />
+                  </Routes>
                 </div>
+                {hiddenSlider && (
+                  <Pagination skip={skip} setSkip={setSkip} count={count} />
+                )}
               </div>
-            </main>
-            <Pagination skip={skip} setSkip={setSkip} count={count} />
-          </>
-        )}
-      </Router>
-    </>
+            </div>
+          </main>
+        </>
+      )}
+    </Router>
   );
 }
 

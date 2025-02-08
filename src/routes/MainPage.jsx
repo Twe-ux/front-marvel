@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+//Lib axios
 import instance from "../lib/axios.serve";
+//Components
+import ListCards from "../components/Card/ListCards";
 
-// Components
-import Cards from "../components/Cards";
-
-// Store the previous request in cache.
+//Store the previous request in cache.
 const cache = new Map();
 
-const Home = ({
+const MainPage = ({
   find,
   skip,
-  limit,
   open,
   setOpen,
   count,
@@ -37,12 +36,6 @@ const Home = ({
     }
   }
 
-  if (limit === 100) {
-    path = path;
-  } else if (limit !== 100) {
-    path = path + `?limit=` + limit;
-  }
-
   if (skip === 100) {
     path = path;
   } else if (skip !== 100) {
@@ -58,7 +51,6 @@ const Home = ({
       try {
         const response = await instance.get(url);
         setData(response.data);
-        // console.log("useE", response.data.count);
         setCount(response.data.count);
         cache.set(path, response.data);
         setIsLoading(false);
@@ -72,14 +64,13 @@ const Home = ({
   return isLoading ? (
     <div className=" rounded-md w-full flex"></div>
   ) : (
-    <div className=" rounded-md overflow-hidden overflow-y-scroll">
-      <div className=" flex flex-wrap gap-3 justify-between ">
+    <div className=" rounded-md overflow-hidden overflow-y-scroll ">
+      <div className=" flex flex-wrap gap-3 justify-between  ">
         {data.results.map((results, index) => {
           // console.log(results);
           return (
             <div key={results + index}>
-              <Cards
-                index={index}
+              <ListCards
                 results={results}
                 open={open}
                 setOpen={setOpen}
@@ -97,4 +88,4 @@ const Home = ({
   );
 };
 
-export default Home;
+export default MainPage;

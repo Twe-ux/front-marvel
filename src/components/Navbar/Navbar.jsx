@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import NavLink from "./NavLink";
 
-const Navbar = ({ setOpen, find, setFind, setSkip }) => {
+const Navbar = ({ setOpen, find, setFind, setSkip, setHiddenSlider }) => {
   return (
     <div className="min-w-60 h-full flex flex-col justify-between p-2">
       <div>
@@ -31,18 +31,21 @@ const Navbar = ({ setOpen, find, setFind, setSkip }) => {
             to={"/characters"}
             setOpen={setOpen}
             setSkip={setSkip}
+            setHiddenSlider={setHiddenSlider}
           />
           <NavLink
             title={"Comics"}
             to={"/comics"}
             setOpen={setOpen}
             setSkip={setSkip}
+            setHiddenSlider={setHiddenSlider}
           />
           <NavLink
             title={"Favoris"}
             to={"/favorite"}
             setOpen={setOpen}
             setSkip={setSkip}
+            setHiddenSlider={setHiddenSlider}
           />
         </div>
       </div>
